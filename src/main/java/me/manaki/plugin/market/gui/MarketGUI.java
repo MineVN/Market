@@ -72,9 +72,8 @@ public class MarketGUI {
 	}
 
 	public static ItemStack getTutItem() {
-		ItemStack item = new ItemStack(Material.GLASS_PANE);
+		ItemStack item = new ItemStack(Material.BOOK);
 		var meta = item.getItemMeta();
-		meta.setCustomModelData(25);
 
 		List<String> lore = new ArrayList<String> ();
 		lore.add("§fHàng càng nhiều người bán thì càng rẻ và ngược lại");
@@ -89,9 +88,8 @@ public class MarketGUI {
 	}
 
 	public static ItemStack getNextButton() {
-		ItemStack item = new ItemStack(Material.GLASS_PANE);
+		ItemStack item = new ItemStack(Material.ARROW);
 		var meta = item.getItemMeta();
-		meta.setCustomModelData(22);
 		meta.setDisplayName("§6§lTrang sau >>");
 		item.setItemMeta(meta);
 
@@ -99,9 +97,8 @@ public class MarketGUI {
 	}
 
 	public static ItemStack getPreviosButton() {
-		ItemStack item = new ItemStack(Material.GLASS_PANE);
+		ItemStack item = new ItemStack(Material.ARROW);
 		var meta = item.getItemMeta();
-		meta.setCustomModelData(23);
 		meta.setDisplayName("§6§l<< Trang trước");
 		item.setItemMeta(meta);
 
