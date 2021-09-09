@@ -72,16 +72,10 @@ public class MarketGUI {
 	}
 
 	public static ItemStack getTutItem() {
-		ItemStack item = new ItemStack(Material.BOOK);
+		ItemStack item = new ItemStack(Material.BARRIER);
 		var meta = item.getItemMeta();
 
-		List<String> lore = new ArrayList<String> ();
-		lore.add("§fHàng càng nhiều người bán thì càng rẻ và ngược lại");
-		lore.add("§fSố % sau giá hàng là tỷ lệ giữa giá hiện tại và giá gốc");
-		lore.add("§fMột ngày giới hạn bán được §l" + SELL_LIMIT + "$§f");
-
-		meta.setDisplayName("§6§lHướng dẫn");
-		meta.setLore(lore);
+		meta.setDisplayName("§c§lThoát");
 		item.setItemMeta(meta);
 
 		return item;
@@ -139,7 +133,10 @@ public class MarketGUI {
 			openGUI(player, page - 1);
 			return;
 		}
-
+		else if (slot == 49) {
+			player.closeInventory();
+			return;
+		}
 		int itemSlot = (page - 1) * 45 + slot;
 		if (e.getClick() == ClickType.RIGHT) {
 			if (!Commodities.itemSlots.containsKey(itemSlot)) return;
