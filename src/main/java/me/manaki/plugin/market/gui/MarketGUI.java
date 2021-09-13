@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MarketGUI {
 	
-	public static String TITLE = "§0§lCHỢ THƯƠNG LÁI (MARKET)";
+	public static String TITLE = ":offset_-16::market:";
 
 	private final static int PRE_BUTTON = 45;
 	private final static int NEXT_BUTTON = 53;
@@ -27,8 +27,9 @@ public class MarketGUI {
 	public static int SELL_LIMIT = 70000;
 
 	public static void openGUI(Player player, int page) {
-		Inventory inv = Bukkit.createInventory(new MGUIHolder(page), 54, TITLE + " - Trang " + page);
+		Inventory inv = Bukkit.createInventory(new MGUIHolder(page), 54, TITLE);
 		player.openInventory(inv);
+		player.playSound(player.getLocation(), Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1, 1);
 		Bukkit.getScheduler().runTaskAsynchronously(Market.get(), () -> {
 			int min = (page - 1) * 45;
 			int max = Math.min((page - 1) * 45 + 44, Commodities.getHighestSlot());
@@ -55,11 +56,11 @@ public class MarketGUI {
 		double percent = Utils.round((double) Commodities.getPoint(id) * 100 / Market.BASE_POINT);
 
 		lore.add("§f§m                    ");
-		lore.add("§aClick §fChuột trái §ađể xem");
-		lore.add("§aClick §fChuột phải §ađể bán 1 lần");
-		lore.add("§aClick §fShift + Chuột phải §ađể bán hết");
+//		lore.add("§aClick §fChuột phải §ađể bán 1 lần");
+//		lore.add("§aClick §fShift + Chuột phải §ađể bán hết");
 		lore.add("§aSố lượng: §f" + item.getAmount());
 		lore.add("§aGiá: §f" + Commodities.getPrice(id) + "$" + " §8(" + percent + "%)");
+		lore.add("§aClick để mở menu bán");
 		lore.add("§f§m                    ");
 
 		ItemMeta meta = itemStack.getItemMeta();
@@ -72,8 +73,9 @@ public class MarketGUI {
 	}
 
 	public static ItemStack getTutItem() {
-		ItemStack item = new ItemStack(Material.BARRIER);
+		ItemStack item = new ItemStack(Material.PAPER);
 		var meta = item.getItemMeta();
+		meta.setCustomModelData(160);
 
 		meta.setDisplayName("§c§lThoát");
 		item.setItemMeta(meta);
@@ -82,8 +84,10 @@ public class MarketGUI {
 	}
 
 	public static ItemStack getNextButton() {
-		ItemStack item = new ItemStack(Material.ARROW);
+		ItemStack item = new ItemStack(Material.PAPER);
 		var meta = item.getItemMeta();
+		meta.setCustomModelData(161);
+
 		meta.setDisplayName("§6§lTrang sau >>");
 		item.setItemMeta(meta);
 
@@ -91,8 +95,10 @@ public class MarketGUI {
 	}
 
 	public static ItemStack getPreviosButton() {
-		ItemStack item = new ItemStack(Material.ARROW);
+		ItemStack item = new ItemStack(Material.PAPER);
 		var meta = item.getItemMeta();
+		meta.setCustomModelData(162);
+
 		meta.setDisplayName("§6§l<< Trang trước");
 		item.setItemMeta(meta);
 
@@ -138,27 +144,11 @@ public class MarketGUI {
 			return;
 		}
 		int itemSlot = (page - 1) * 45 + slot;
-		if (e.getClick() == ClickType.RIGHT) {
-			if (!Commodities.itemSlots.containsKey(itemSlot)) return;
-			if (Commodities.sell(itemSlot, player, false)) {
-				Bukkit.getScheduler().runTaskAsynchronously(Market.get(), () -> {
-					e.getInventory().setItem(slot, getItem(itemSlot));
-				});
-			}
-		}
-		else if (e.getClick() == ClickType.SHIFT_RIGHT) {
-			Bukkit.getScheduler().runTask(Market.get(), () -> {
-				if (!Commodities.itemSlots.containsKey(itemSlot)) return;
-				if (Commodities.sell(itemSlot, player, true)) {
-					e.getInventory().setItem(slot, getItem(itemSlot));
-				}
-			});
-		}
-		else if (e.getClick() == ClickType.LEFT) {
-			if (!Commodities.itemSlots.containsKey(itemSlot)) return;
-			CommodityGUI.open(player, Commodities.itemSlots.get(itemSlot));
-		}
 
+		//
+		if (!Commodities.itemSlots.containsKey(itemSlot)) return;
+		var com = Commodities.itemSlots.get(itemSlot);
+		SellGUI.openGUI(player, com);
 		
 	}
 

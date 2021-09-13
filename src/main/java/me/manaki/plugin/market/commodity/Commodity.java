@@ -5,7 +5,8 @@ import me.manaki.plugin.market.gui.MarketGUI;
 import org.bukkit.inventory.ItemStack;
 
 public class Commodity {
-	
+
+	private int slotId;
 	private String id;
 	private CommodityType type;
 	private int amount;
@@ -13,13 +14,18 @@ public class Commodity {
 
 	private ItemStack model;
 	
-	public Commodity(String id, CommodityType type, int amount, double baseValue) {
+	public Commodity(int slotId, String id, CommodityType type, int amount, double baseValue) {
+		this.slotId = slotId;
 		this.id = id;
 		this.type = type;
 		this.amount = amount;
 		this.baseValue = baseValue;
 
 		this.model = type.get(id);
+	}
+
+	public int getSlotId() {
+		return slotId;
 	}
 
 	public boolean is(ItemStack is) {

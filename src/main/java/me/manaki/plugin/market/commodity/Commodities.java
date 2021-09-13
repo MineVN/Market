@@ -39,8 +39,8 @@ public class Commodities {
 
 			// Get commodity
 			String a[] = material.split(" ");
-			if (a.length <= 1) item = new Commodity(material, CommodityType.DEFAULT, amount, baseValue);
-			else item = new Commodity(a[1], CommodityType.valueOf(a[0].toUpperCase()), amount, baseValue);
+			if (a.length <= 1) item = new Commodity(slot, material, CommodityType.DEFAULT, amount, baseValue);
+			else item = new Commodity(slot, a[1], CommodityType.valueOf(a[0].toUpperCase()), amount, baseValue);
 
 
 			int point = Market.BASE_POINT;
