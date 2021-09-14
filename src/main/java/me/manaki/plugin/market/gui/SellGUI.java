@@ -30,7 +30,7 @@ public class SellGUI {
         player.openInventory(inv);
 
         Bukkit.getScheduler().runTaskAsynchronously(Market.get(), () -> {
-            for (int i = 0 ; i < inv.getSize() ; i++) inv.setItem(i, getBackButton());
+//            for (int i = 0 ; i < inv.getSize() ; i++) inv.setItem(i, getBackButton());
             var is = ItemStorage.get(commodity.getID());
             is.setAmount(commodity.getAmount());
             if (is.getType() != Material.AIR) {
