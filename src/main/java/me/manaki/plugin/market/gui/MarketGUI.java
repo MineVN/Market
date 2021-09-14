@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MarketGUI {
 	
-	public static String TITLE = ":offset_-16::market:";
+	public static String TITLE = "§0§lMARKET";
 
 	private final static int PRE_BUTTON = 45;
 	private final static int NEXT_BUTTON = 53;
@@ -73,9 +73,8 @@ public class MarketGUI {
 	}
 
 	public static ItemStack getTutItem() {
-		ItemStack item = new ItemStack(Material.PAPER);
+		ItemStack item = new ItemStack(Material.BARRIER);
 		var meta = item.getItemMeta();
-		meta.setCustomModelData(160);
 
 		meta.setDisplayName("§c§lThoát");
 		item.setItemMeta(meta);
@@ -84,9 +83,8 @@ public class MarketGUI {
 	}
 
 	public static ItemStack getNextButton() {
-		ItemStack item = new ItemStack(Material.PAPER);
+		ItemStack item = new ItemStack(Material.ARROW);
 		var meta = item.getItemMeta();
-		meta.setCustomModelData(161);
 
 		meta.setDisplayName("§6§lTrang sau >>");
 		item.setItemMeta(meta);
@@ -95,9 +93,8 @@ public class MarketGUI {
 	}
 
 	public static ItemStack getPreviosButton() {
-		ItemStack item = new ItemStack(Material.PAPER);
+		ItemStack item = new ItemStack(Material.ARROW);
 		var meta = item.getItemMeta();
-		meta.setCustomModelData(162);
 
 		meta.setDisplayName("§6§l<< Trang trước");
 		item.setItemMeta(meta);
