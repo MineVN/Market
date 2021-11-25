@@ -86,7 +86,7 @@ public class MarketGUI {
 	public static ItemStack getNextButton() {
 		ItemStack item = new ItemStack(Material.PAPER);
 		var meta = item.getItemMeta();
-		meta.setCustomModelData(161);
+		meta.setCustomModelData(162);
 
 		meta.setDisplayName("§6§lTrang sau >>");
 		item.setItemMeta(meta);
@@ -97,7 +97,7 @@ public class MarketGUI {
 	public static ItemStack getPreviosButton() {
 		ItemStack item = new ItemStack(Material.PAPER);
 		var meta = item.getItemMeta();
-		meta.setCustomModelData(162);
+		meta.setCustomModelData(161);
 
 		meta.setDisplayName("§6§l<< Trang trước");
 		item.setItemMeta(meta);
